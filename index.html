@@ -1,54 +1,131 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Honest Audit Hub — Coming Soon</title>
-  <meta name="description" content="Honest John's Audit Hub. Real-time token scans, HON score, and shareable reports." />
+  <title>Honest Audit Hub</title>
+
+  <!-- Temporary: keep the placeholder out of Google until we ship -->
+  <meta name="robots" content="noindex, nofollow" />
+
+  <!-- Branding / browser chrome -->
+  <meta name="theme-color" content="#181a1b" />
+  <meta name="color-scheme" content="dark" />
+  <link rel="icon" href="/favicon.ico" />
+
+  <!-- Social preview (safe defaults; update later when we add a hero image) -->
+  <meta property="og:title" content="Honest Audit Hub" />
+  <meta property="og:description" content="Real-time scanning, smart-contract safety checks, and shareable audit reports." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://audit-hub.vercel.app/" />
+  <meta name="description" content="Real-time scanning, smart-contract safety checks, and shareable audit reports." />
+
   <style>
-    :root { --bg:#0b0b0d; --panel:#121218; --text:#e9e9ee; --muted:#a7a7b2; --accent:#ffd166; }
-    *{box-sizing:border-box}
-    html,body{height:100%}
+    :root{
+      --bg0:#1a1a1d;
+      --bg1:#222426;
+      --card:#2a2a2d;
+      --text:#e6e6e6;
+      --muted:#b0b0b0;
+      --accent:#1a7f2a;
+      --accent-2:#0f5e1c;
+      --gold:#f3c969;
+      --ring:#66ff9a;
+    }
+    * { box-sizing:border-box; }
+    html,body{ height:100%; }
     body{
-      margin:0; background:radial-gradient(1200px 600px at 70% -10%, #1b1b24 0%, #0b0b0d 60%) fixed;
-      color:var(--text); font:16px/1.5 system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      display:grid; place-items:center; padding:24px;
+      margin:0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+      background: linear-gradient(135deg, var(--bg0), var(--bg1));
+      color: var(--text);
+      display:flex;
+      min-height:100svh; /* correct height on mobile browsers */
     }
-    .card{
-      width:min(720px, 92vw); background:var(--panel); border:1px solid #20202a;
-      border-radius:20px; padding:28px; box-shadow:0 10px 40px rgba(0,0,0,.35);
+
+    .wrap{
+      margin:auto;
+      width:min(720px, 92vw);
+      padding:24px;
+      text-align:center;
     }
-    h1{margin:0 0 8px; font-size:clamp(28px, 4.5vw, 42px); letter-spacing:.2px}
-    p{margin:8px 0; color:var(--muted)}
-    .badge{
-      display:inline-block; padding:6px 12px; border-radius:999px; font-weight:600;
-      background:rgba(255,209,102,.12); border:1px solid rgba(255,209,102,.45); color:var(--accent);
-      margin-bottom:14px
+
+    header .badge{
+      display:inline-block;
+      background: var(--card);
+      border:1px solid #3c3f44;
+      color: var(--gold);
+      font-weight:700;
+      padding:10px 16px;
+      border-radius:12px;
+      letter-spacing:.2px;
+      margin-bottom:18px;
     }
-    .row{display:flex; flex-wrap:wrap; gap:12px; margin-top:18px}
+
+    h1{
+      margin:0 0 8px;
+      font-size:clamp(28px, 4.5vw, 40px);
+      line-height:1.1;
+      color:#fff;
+    }
+    p{
+      margin:8px auto 0;
+      color:var(--muted);
+      font-size:clamp(16px, 2.7vw, 18px);
+      line-height:1.6;
+      max-width:56ch;
+    }
+
+    .row{ display:flex; justify-content:center; gap:12px; margin-top:20px; flex-wrap:wrap; }
+
     .btn{
-      appearance:none; border:1px solid #272739; background:#171724; color:#e9e9ee;
-      padding:10px 14px; border-radius:12px; font-weight:600; text-decoration:none; display:inline-block
+      appearance:none;
+      border:none;
+      background: var(--accent);
+      color:#fff;
+      font-weight:700;
+      padding:10px 16px;
+      border-radius:10px;
+      text-decoration:none;
+      cursor:pointer;
+      transition: transform .12s ease, box-shadow .12s ease, background .12s ease;
+      min-width:160px;
     }
-    .btn.primary{background:linear-gradient(135deg,#2a2a3d,#1c1c2a); border-color:#32324a}
-    footer{margin-top:22px; font-size:13px; color:#8e8e99}
+    .btn:hover{ background:#1e8c30; transform:translateY(-1px); }
+    .btn:active{ background:var(--accent-2); transform:translateY(0); }
+    .btn:focus-visible{
+      outline:none;
+      box-shadow:0 0 0 3px color-mix(in srgb, var(--ring) 60%, transparent);
+    }
+
+    footer{
+      margin-top:22px;
+      color:#8b8b8b;
+      font-size:14px;
+      padding-bottom: env(safe-area-inset-bottom);
+    }
+
+    /* Reduce motion kindness */
+    @media (prefers-reduced-motion: reduce){
+      .btn{ transition:none; }
+    }
   </style>
 </head>
 <body>
-  <main class="card" role="main" aria-labelledby="title">
-    <div class="badge">Honest John’s Crypto World</div>
-    <h1 id="title">Honest Audit Hub is coming soon</h1>
-    <p>The new audit engine with real-time checks, the <strong>HON Score</strong>, and shareable report links.</p>
-    <p>We’re wiring the scanners and dashboards now. This page will auto-update when we publish.</p>
+  <div class="wrap">
+    <header>
+      <div class="badge" aria-label="Site badge">Honest Audit Hub</div>
+    </header>
 
-    <div class="row">
-      <a class="btn primary" href="/" aria-label="Refresh">Refresh</a>
-      <!-- Add real links later if you want -->
-      <!-- <a class="btn" href="https://t.me/yourchannel">Telegram</a> -->
-      <!-- <a class="btn" href="https://x.com/yourhandle">X (Twitter)</a> -->
-    </div>
+    <main aria-labelledby="title">
+      <h1 id="title">Coming Soon</h1>
+      <p>The audit engine with real-time scanning, smart-contract safety checks, and shareable report links.</p>
+      <p>We’re wiring the scanners and dashboards now. This page will auto-update when we publish.</p>
 
-    <footer>© Honest John’s Crypto World 2025 • “The Badge You Can Trust.”</footer>
-  </main>
-</body>
-</html>
+      <div class="row">
+        <a class="btn" href="/" aria-label="Refresh this page">Refresh</a>
+      </div>
+    </main>
+
+    <footer>
+      © Honest Audit Hub 2025 • “The Badge
